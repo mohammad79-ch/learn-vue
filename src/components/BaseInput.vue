@@ -1,19 +1,22 @@
 <template>
-  <input type="text" class="input is-rounded"
-  :class="{
+  <div>
+    <input :type="getType" class="input is-rounded"
+           :class="{
     [`is-${color}`]:color
   }"
-  v-bind="$attrs"
-  :value="modelValue"
-  @input="(event) =>$emit('update:modelValue',event.target.value)"
-   >
-
+           v-bind="$attrs"
+           :value="modelValue"
+           @input="(event) =>$emit('update:modelValue',event.target.value)"
+    >
+    <a @click="getType = 'password'">kkkk</a>
+  </div>
 </template>
 
 <script>
 export default {
   name : 'BaseInput',
   inheritAttrs : false,
+
   props : {
     color:{
       type:String,
@@ -21,8 +24,28 @@ export default {
     },
     modelValue : {
       type : [String,Number]
+    },
+    type : {
+      type : [String],
+      default : 'text'
     }
   },
+  data(){
+    return {
+      getType : this.type,
+      checkStatus : false
+    }
+  },
+  methods : {
+    // changeType(){
+    //
+    //  if (this.getType == 'password'){
+    //     this.getType = 'text' ;
+    //  }else{
+    //    this.getType = 'password';
+    //  }
+    // }
+  }
 }
 </script>
 
