@@ -15,7 +15,7 @@
 
 <!--  bade select-->
 
-    <BaseSelect />
+    <BaseSelect :items="data" color="danger" v-model="selectedOption"/>
 
 </template>
 
@@ -39,6 +39,12 @@ export default {
       name: "mamad",
       age: 21,
       type: "password",
+      data : [
+        {key:1,value:'mamad'},
+        {key:2,value:'ali'},
+        {key:3,value:'Amir'},
+      ],
+      selectedOption : 1
     }
   },
 
