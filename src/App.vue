@@ -6,12 +6,16 @@
 
   <!--  base input -->
 
-  <BaseInput color="danger"/>
-  <BaseInput color="primary"/>
-  <BaseInput color="warning" v-model="age"/>
-  <BaseInput color="warning" v-model="name"/>
-  <BaseInput color="dark" type/>
-  <p>{{ name }}</p>
+<!--  <BaseInput color="danger"/>-->
+<!--  <BaseInput color="primary"/>-->
+<!--  <BaseInput color="warning" v-model="age"/>-->
+<!--  <BaseInput color="warning" v-model="name"/>-->
+<!--  <BaseInput color="dark" type/>-->
+<!--  <p>{{ name }}</p>-->
+
+<!--  bade select-->
+
+    <BaseSelect />
 
 </template>
 
@@ -19,12 +23,14 @@
 
 // import BaseButton from "./components/BaseButton.vue";
 import BaseInput from "./components/BaseInput.vue";
+import BaseSelect from "./components/BaseSelect.vue";
 
 export default {
   name: 'App',
   components: {
     // BaseButton
-    BaseInput
+    BaseInput,
+    BaseSelect
   },
 
   data() {
