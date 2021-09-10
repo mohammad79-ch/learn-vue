@@ -15,7 +15,9 @@
 
 <!--  bade select-->
 
-    <BaseSelect :items="data" color="danger" v-model="selectedOption"/>
+<!--    <BaseSelect :items="data" color="danger" v-model="selectedOption"/>-->
+
+        <BaseApi  />
 
 </template>
 
@@ -23,6 +25,7 @@
 
 // import BaseButton from "./components/BaseButton.vue";
 import BaseInput from "./components/BaseInput.vue";
+import BaseApi from "./components/BaseApi.vue";
 import BaseSelect from "./components/BaseSelect.vue";
 
 export default {
@@ -30,7 +33,8 @@ export default {
   components: {
     // BaseButton
     BaseInput,
-    BaseSelect
+    BaseSelect,
+    BaseApi
   },
 
   data() {
