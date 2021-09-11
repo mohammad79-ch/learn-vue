@@ -1,46 +1,121 @@
 <template>
-  <p @click="handleName">{{user.name}}</p>
-  <button @click="handleClick">Counter {{count}}</button>
+  <p>{{message}}</p>
+
+<!--  <h1>{{ msg }}</h1>-->
+<!--  <button @click="handleClick">count is: {{ count }}</button>-->
+<!--  <h1>{{ fullName }}</h1>-->
+<!--  <h1 v-for="framework in upperFrameworks" :key="framework">{{ framework }}</h1>-->
 </template>
 
 <script>
-import { ref, reactive,computed} from 'vue'
+import { ref, reactive, computed, watchEffect ,watch} from 'vue';
 
 export default {
+  name: 'HelloWorld',
 
-name: "BaseApi",
+  props : {
+    message:{
+      type:String,
+    }
+  },
 
-  setup(){
+  setup(props) {
 
-  let count = ref(0);
+    console.log(props.message)
 
-  const user = reactive({name : "Mamads"})
+    const msg = 'Hello Vue 3.0 + Vite';
+    const count = ref(5);
 
-  function handleClick(){
-    count.value++
-  }
+    const user = reactive({ name: 'tofiq', last: 'hamzai' });
+    const frameworks = reactive(['vue.js', 'angular']);
 
-  const frameworks = reactive(['laravel','vue']);
+    const upperFrameworks = computed(() => frameworks.map(framework => framework.toUpperCase()));
 
-  const upperComputed = computed(()=> frameworks.map(framework => framework.toUpperCase()))
+    const fullName = computed({
+      get: () => user.name + ' ' + user.last,
+      set: (value) => {
 
-    console.log(upperComputed)
-    function handleName(){
-     user.name = "Programmer"
+        // const userFullName = value.split(' ');
+        // user.name = userFullName[0];
+        // user.last = userFullName[1];
+        const [name, last] = value.split(' ');
+        user.name = name;
+        user.last = last;
+      }
+    })
+
+    watch(()=>user.name,(newName,oldName)=>{
+      // console.log(newName,oldName)
+    })
+
+
+    fullName.value = 'mamad mohammadi';
+
+
+
+    watchEffect((onInvalidate) => {
+      // console.log('count', count.value);
+
+      // const fetching =
+
+      // DOM and template refs
+
+      onInvalidate(() => {
+        // side effect
+        // fetching.cancel()
+      })
+    });
+
+
+    // const stopWatchEffect = watchEffect(() => {
+    //   console.log('count', count.value)
+    // });
+
+    // stopWatchEffect()
+
+
+    // function handleClick() {
+    //   count.value++;
+    //   this
+    // }
+    const handleClick = () => {
+      count.value++;
     }
 
-  return{
-    count,
-    user,
-    upperComputed,
-    handleClick,
-    handleName,
-  }
 
-  }
+    return {
+      msg,
+      count,
+      user,
+      upperFrameworks,
+      fullName,
+      handleClick
+    }
+  },
+
+  // beforeCreate()
+  // created
+
+  // data() {
+  //   return {
+  //     count: 0,
+  //     msg: 'Hello Vue 3.0 + Vite'
+  //   }
+  // }
+  /* computed: {
+    fullName: {
+      get() {
+        return this.user.name + ' ' + this.user.last;
+      },
+      set(newValue) {
+        const fullName = newValue.split(' ');
+        this.user.name = fullName[0];
+        this.user.last = fullName[1];
+      }
+    },
+    upperFrameworks: function() {
+      return this.frameworks.map(framework => framework.toUpperCase())
+    }
+  }, */
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -17,7 +17,7 @@
 
 <!--    <BaseSelect :items="data" color="danger" v-model="selectedOption"/>-->
 
-        <BaseApi  />
+        <BaseApi message="Hello World" />
 
 </template>
 
