@@ -1,10 +1,9 @@
 <template>
-  <p>{{message}}</p>
 
-<!--  <h1>{{ msg }}</h1>-->
-<!--  <button @click="handleClick">count is: {{ count }}</button>-->
-<!--  <h1>{{ fullName }}</h1>-->
-<!--  <h1 v-for="framework in upperFrameworks" :key="framework">{{ framework }}</h1>-->
+  <h1>{{ msg }}</h1>
+  <button @click="handleClick">count is: {{ count }}</button>
+  <h1>{{ fullName }}</h1>
+  <h1 v-for="framework in upperFrameworks" :key="framework">{{ framework }}</h1>
 </template>
 
 <script>
@@ -19,9 +18,7 @@ export default {
     }
   },
 
-  setup(props) {
-
-    console.log(props.message)
+  setup(props,{emit,attrs,slots}) {
 
     const msg = 'Hello Vue 3.0 + Vite';
     const count = ref(5);
@@ -102,6 +99,25 @@ export default {
   //     msg: 'Hello Vue 3.0 + Vite'
   //   }
   // }
+
+  computed: {
+    fullName: {
+      // getter
+      get() {
+        return this.firstName + ' ' + this.lastName
+      },
+      // setter
+      set(newValue) {
+        console.log(newValue)
+        const names = newValue.split(' ')
+        this.firstName = names[0]
+        this.lastName = names[names.length - 1]
+      }
+    }
+  },
+
+  fullName : "mamad ch",
+
   /* computed: {
     fullName: {
       get() {

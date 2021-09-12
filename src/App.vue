@@ -17,7 +17,11 @@
 
 <!--    <BaseSelect :items="data" color="danger" v-model="selectedOption"/>-->
 
-        <BaseApi message="Hello World" />
+<!--        <button type="submit" @click="showComponent = false">Click here to remove something</button>-->
+
+<!--        <BaseApi message="Hello World" v-if="showComponent" />-->
+
+  <LifeCycle  />
 
 </template>
 
@@ -27,6 +31,7 @@
 import BaseInput from "./components/BaseInput.vue";
 import BaseApi from "./components/BaseApi.vue";
 import BaseSelect from "./components/BaseSelect.vue";
+import LifeCycle from "./components/LifeCycle.vue";
 
 export default {
   name: 'App',
@@ -34,8 +39,10 @@ export default {
     // BaseButton
     BaseInput,
     BaseSelect,
-    BaseApi
+    BaseApi,
+    LifeCycle
   },
+
 
   data() {
     return {
@@ -48,6 +55,7 @@ export default {
         {key:2,value:'ali'},
         {key:3,value:'Amir'},
       ],
+      showComponent : true,
       selectedOption : 1
     }
   },
