@@ -1,6 +1,6 @@
 <template>
-  <input type="text" v-model="Name">
-    <p>{{ Name }}</p>
+  <button @click="showP = false" ref="btn">Click me pls</button>
+  <p v-if="showP">Test</p>
 </template>
 
 <script>
@@ -13,21 +13,33 @@ import {
   onUnmounted,
   onActivated,
   onDeactivated,
-  onErrorCaptured
+  onErrorCaptured,
+  ref
 } from "vue";
 
 export default {
   name: "LifeCycle",
 
-  data : ()=>({
-      Name : ''
-  }),
-
+  data() {
+    return {
+      Name: '',
+      showP: true
+    }
+  },
   setup() {
+
+    const btn = ref(null)
+
+
     onBeforeMount(() => {
       console.log("Before Mount!");
     });
     onMounted(() => {
+
+      setTimeout(()=>{
+        console.log(btn.value.click())
+      },3000)
+
       console.log("Mounted!");
     });
     onBeforeUpdate(() => {
@@ -51,6 +63,12 @@ export default {
     onErrorCaptured(() => {
       console.log("Error Captured!");
     });
-  }
+
+    return {
+      btn
+    }
+
+  },
+
 }
 </script>
